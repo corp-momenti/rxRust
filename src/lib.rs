@@ -15,6 +15,7 @@ extern crate bencher;
 #[cfg(test)]
 pub mod test_scheduler;
 
+pub mod behavior;
 pub mod impl_helper;
 pub mod observable;
 pub mod observer;
@@ -28,6 +29,7 @@ pub mod type_hint;
 
 pub mod prelude {
 
+  pub use crate::behavior::*;
   pub use crate::observable;
   pub use crate::observable::*;
   pub use crate::observer;

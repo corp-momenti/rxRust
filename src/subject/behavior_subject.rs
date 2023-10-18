@@ -121,6 +121,22 @@ impl<'a, Item: Clone, Err> LocalObservable<'a>
   }
 }
 
+impl<'a, Item: Clone + 'static, Err: Clone> Behavior
+  for LocalBehaviorSubject<'a, Item, Err>
+{
+  fn peek(&self) -> <Self as Observer>::Item {
+    self.value.rc_deref().clone()
+  }
+}
+
+impl<Item: Clone + 'static, Err: Clone> Behavior
+  for SharedBehaviorSubject<Item, Err>
+{
+  fn peek(&self) -> <Self as Observer>::Item {
+    self.value.rc_deref().clone()
+  }
+}
+
 #[cfg(test)]
 mod test {
   use crate::prelude::*;
